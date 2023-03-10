@@ -11,5 +11,5 @@ public interface UserService {
 
     void deleteAllUsers();
 
-    User findOwner(String car_name, String car_series);
+    User findOwner(String car_name);
 }

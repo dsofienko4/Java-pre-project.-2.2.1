@@ -39,7 +39,7 @@ public class MainApp {
             System.out.println();
         }
 
-        System.out.println(userService.findOwner("Volva", "750"));
+        System.out.println(userService.findOwner("Volva"));
         context.close();
     }
 }
