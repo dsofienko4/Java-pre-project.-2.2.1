@@ -1,88 +1,88 @@
 package hiber.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
+@Component
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long id;
 
-    @Column(name = "name")
-    private String firstName;
+   @Column(name = "name")
+   private String firstName;
 
-    @Column(name = "lastname")
-    private String lastName;
+   @Column(name = "last_name")
+   private String lastName;
 
-    @Column(name = "email")
-    private String email;
+   @Column(name = "email")
+   private String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Car car;
 
-    public User() {
-    }
 
-    public User(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
+   @OneToOne(cascade = CascadeType.ALL)
+   @Autowired
+   private Car userCar;
 
-    public User(String firstName, String lastName, String email, Car car) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.car = car;
-    }
+   public User() {}
+   
+   public User(String firstName, String lastName, String email) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.email = email;
+   }
 
-    public Long getId() {
-        return id;
-    }
+   public User(String firstName, String lastName, String email, Car userCar) {
+      this.id = id;
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.email = email;
+      this.userCar = userCar;
+   }
+   public Car getUserCar() {
+      return userCar;
+   }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getFirstName() {
-        return firstName;
-    }
+/*   @Autowired
+   public void setUserCar(Car userCar) {
+      this.userCar = userCar;
+   }*/
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+   public Long getId() {
+      return id;
+   }
 
-    public String getLastName() {
-        return lastName;
-    }
+   public void setId(Long id) {
+      this.id = id;
+   }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+   public String getFirstName() {
+      return firstName;
+   }
 
-    public String getEmail() {
-        return email;
-    }
+   public void setFirstName(String firstName) {
+      this.firstName = firstName;
+   }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+   public String getLastName() {
+      return lastName;
+   }
 
-    public Car getCar() {
-        return car;
-    }
+   public void setLastName(String lastName) {
+      this.lastName = lastName;
+   }
 
-    public void setCar() {
-        this.car = car;
-    }
+   public String getEmail() {
+      return email;
+   }
 
-    @Override
-    public String toString() {
-        return "firstName: " + firstName + ", " +
-                "lastName: " + lastName + ", " +
-                "email: " + email + ", " +
-                car.toString();
-    }
+   public void setEmail(String email) {
+      this.email = email;
+   }
 }
